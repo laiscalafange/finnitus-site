@@ -1,4 +1,5 @@
 # Finnitus — Site oficial
+https://laiscalafange.github.io/finnitus-site/
 
 **Organize seu salário. Antecipe seus gastos. Decida melhor.**
 
