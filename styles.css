@@ -1026,81 +1026,154 @@ svg.i {
 }
 
 .about-art {
-  height: 350px;
-  border-radius: 28px;
-  border: 1px solid #7430a46b;
-  overflow: hidden;
   position: relative;
-  background: linear-gradient(125deg,#270d41,#100b1d 70%);
-  box-shadow: 0 25px 75px #0005;
+  min-height: 350px;
+  border-radius: 32px;
+  border: 1px solid rgba(194, 175, 255, 0.18);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 30%, rgba(102, 1, 245, 0.22), transparent 30%),
+    radial-gradient(circle at 82% 78%, rgba(130, 220, 0, 0.10), transparent 24%),
+    linear-gradient(135deg, #170c28 0%, #12091d 55%, #1a0f2d 100%);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 30px 34px;
+  gap: 22px;
+  isolation: isolate;
 }
 
 .about-art::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -140px;
-  left: -110px;
-  background: #ffb909;
-  width: 400px;
-  height: 400px;
-  clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%);
-  transform: rotate(20deg);
-  opacity: .27;
+  width: 260px;
+  height: 260px;
+  left: -70px;
+  top: -55px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(102, 1, 245, 0.32), transparent 68%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .about-art::after {
-  content: '';
+  content: "";
   position: absolute;
-  inset: auto -40px -100px 10px;
-  height: 250px;
-  background: radial-gradient(ellipse,#4200908b,transparent 70%);
-  filter: blur(40px);
+  width: 220px;
+  height: 220px;
+  right: -70px;
+  bottom: -90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(130, 220, 0, 0.14), transparent 70%);
+  filter: blur(6px);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .about-art img {
-  width: 295px;
-  margin-left: -20px;
+  position: relative;
   z-index: 2;
-  filter: drop-shadow(0 20px 20px #0008);
+  width: 260px;
+  margin: 0;
+  flex-shrink: 0;
+  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.35));
   animation: finnBob 7s ease-in-out infinite;
 }
 
 .about-art-mark {
-  font-family: var(--serif);
-  font-size: 290px;
-  color: #ffffff07;
   position: absolute;
-  right: -20px;
-  top: -70px;
+  right: 18px;
+  top: -38px;
+  z-index: 1;
+  font-family: var(--serif);
+  font-size: 220px;
   line-height: 1;
+  color: rgba(255, 255, 255, 0.035);
+  pointer-events: none;
 }
 
 .about-art-mark span {
-  color: #ffb90914;
+  color: rgba(130, 220, 0, 0.08);
 }
 
 .about-quote {
-  font-family: var(--serif);
-  font-size: 27px;
-  line-height: 1.43;
+  position: relative;
   z-index: 2;
-  margin-left: -28px;
+  margin: 0;
+  max-width: 280px;
+  font-family: var(--serif);
+  font-size: 28px;
+  line-height: 1.4;
+  color: #f8f5ff;
 }
 
 .about-quote span {
-  color: var(--yellow);
+  color: var(--green);
 }
 
 .about-art-caption {
   position: absolute;
-  left: 26px;
-  bottom: 20px;
-  z-index: 3;
-  font-size: 9px;
-  letter-spacing: .18em;
-  color: #ded1eb;
+  left: 34px;
+  bottom: 22px;
+  z-index: 2;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: #d5cae6;
+}
+
+@media (max-width: 970px) {
+  .about-art {
+    min-height: 320px;
+    padding: 26px 24px;
+    gap: 16px;
+  }
+
+  .about-art img {
+    width: 220px;
+  }
+
+  .about-quote {
+    font-size: 22px;
+    max-width: 220px;
+  }
+
+  .about-art-mark {
+    font-size: 180px;
+    top: -20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .about-art {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    min-height: 340px;
+    padding: 28px 20px 46px;
+  }
+
+  .about-art img {
+    width: 220px;
+  }
+
+  .about-quote {
+    max-width: 100%;
+    font-size: 24px;
+  }
+
+  .about-art-caption {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    width: 100%;
+  }
+
+  .about-art-mark {
+    right: 8px;
+    top: -8px;
+    font-size: 150px;
+  }
 }
 
 /* features */
@@ -3825,4 +3898,485 @@ html {
   width: 100%;
   height: 100%;
   border: none;
+}
+
+/* ==========================================================
+   FINNITUS — NOVO BANNER DE DOWNLOAD
+   Cole este bloco NO FINAL do seu style.css.
+   Mantém o HTML e corrige o contraste do banner anterior.
+   ========================================================== */
+
+.download-section {
+  padding: 62px 0 82px;
+  background: #0c0815;
+}
+
+.download-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 370px;
+  border: 1px solid rgba(194, 175, 255, 0.28);
+  border-radius: 28px;
+  color: #f8f5ff;
+  background:
+    radial-gradient(circle at 83% 55%, rgba(117, 41, 215, 0.27), transparent 33%),
+    linear-gradient(112deg, #160c26 0%, #1c1030 52%, #2b1550 100%);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+}
+
+/* Brilho atrás do mascote, sem afetar o contraste da leitura. */
+.download-banner::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 400px;
+  height: 400px;
+  right: 1%;
+  bottom: -175px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(109, 34, 219, 0.34), transparent 68%);
+  pointer-events: none;
+}
+
+.download-banner::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 320px;
+  height: 320px;
+  right: 4%;
+  top: 9%;
+  border: 1px solid rgba(194, 175, 255, 0.15);
+  border-radius: 50%;
+  background: none;
+  filter: none;
+  transform: none;
+  pointer-events: none;
+}
+
+.download-copy {
+  position: relative;
+  z-index: 4;
+  width: 68%;
+  max-width: 850px;
+  padding: 54px clamp(28px, 5vw, 76px);
+}
+
+.download-copy .section-label {
+  display: inline-block;
+  margin-bottom: 15px;
+  color: #a7ed57;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.download-copy h2 {
+  max-width: 700px;
+  margin: 0 0 17px;
+  color: #fbf9ff;
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.15vw, 49px);
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: -0.045em;
+  line-height: 1.16;
+}
+
+.download-copy h2 em,
+.download-copy h2 i {
+  color: #bba1ff;
+  font-style: normal;
+}
+
+.download-copy p {
+  max-width: 470px;
+  margin: 0 0 25px;
+  color: #c9c0d7;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.download-copy .btn {
+  min-height: 49px;
+  padding: 14px 23px;
+  border: 1px solid rgba(193, 159, 255, 0.4);
+  border-radius: 13px;
+  background: linear-gradient(125deg, #681de0, #5c21bc);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  box-shadow: 0 12px 28px rgba(60, 5, 140, 0.26);
+}
+
+.download-copy .btn:hover {
+  border-color: #c2afff;
+  background: linear-gradient(125deg, #7b32f3, #6a2bce);
+  box-shadow: 0 16px 36px rgba(70, 7, 156, 0.34);
+  transform: translateY(-2px);
+}
+
+.download-finn {
+  position: absolute;
+  z-index: 2;
+  width: clamp(220px, 23vw, 310px);
+  max-height: 100%;
+  right: clamp(16px, 6.5vw, 105px);
+  bottom: -17px;
+  object-fit: contain;
+  object-position: center bottom;
+  filter: drop-shadow(0 16px 30px rgba(10, 3, 24, 0.35));
+}
+
+/* Remove o lettering gigante e o ornamento antigo. */
+.download-ghost-word,
+.download-spark {
+  display: none;
+}
+
+@media (max-width: 970px) {
+  .download-banner {
+    min-height: 340px;
+  }
+
+  .download-copy {
+    width: 69%;
+    padding: 40px 35px;
+  }
+
+  .download-copy h2 {
+    font-size: clamp(31px, 3.9vw, 41px);
+  }
+
+  .download-finn {
+    width: clamp(190px, 28vw, 260px);
+    right: 10px;
+  }
+}
+
+@media (max-width: 760px) {
+  .download-section {
+    padding: 44px 0 64px;
+  }
+
+  .download-banner {
+    display: block;
+    min-height: 0;
+    border-radius: 22px;
+  }
+
+  .download-copy {
+    width: 100%;
+    max-width: none;
+    padding: 36px 28px 236px;
+  }
+
+  .download-copy h2 {
+    max-width: 530px;
+    font-size: clamp(30px, 6vw, 43px);
+  }
+
+  .download-copy p {
+    max-width: 480px;
+    font-size: 13px;
+  }
+
+  .download-finn {
+    width: 225px;
+    max-height: 225px;
+    right: 18px;
+    bottom: -10px;
+  }
+
+  .download-banner::before {
+    width: 300px;
+    height: 300px;
+    right: -50px;
+    bottom: -110px;
+  }
+
+  .download-banner::after {
+    width: 230px;
+    height: 230px;
+    right: 6px;
+    top: auto;
+    bottom: -40px;
+  }
+}
+
+@media (max-width: 520px) {
+  .download-copy {
+    padding: 32px 23px 213px;
+  }
+
+  .download-copy .section-label {
+    font-size: 10px;
+  }
+
+  .download-copy h2 {
+    font-size: clamp(28px, 7.5vw, 36px);
+    line-height: 1.16;
+  }
+
+  .download-copy .btn {
+    padding: 13px 18px;
+    white-space: normal;
+  }
+
+  .download-finn {
+    width: 195px;
+    max-height: 195px;
+    right: 10px;
+  }
+}
+
+
+
+.contact-method a {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* ===============================================================
+   FINNITUS | FORMULÁRIO DE CONTATO — VISUAL RESTAURADO
+   Mantém a identidade roxo + verde presente no restante do site.
+   =============================================================== */
+.contact-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(36px, 6vw, 95px);
+}
+
+.finnitus-contact-card {
+  width: 100%;
+  min-width: 0;
+  padding: 38px;
+  border: 1px solid rgba(194, 175, 255, .2);
+  border-radius: 26px;
+  background: linear-gradient(145deg, #1c102a, #150d20);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .16);
+}
+
+.finnitus-contact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.finnitus-contact-header h3 {
+  color: #f8f5ff;
+  font-family: var(--serif);
+  font-size: clamp(25px, 2.2vw, 34px);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.finnitus-contact-header > span {
+  color: var(--green);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+#finnitus-contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+}
+
+.finnitus-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+}
+
+.finnitus-form-field label {
+  color: #f8f5ff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.finnitus-form-field input,
+.finnitus-form-field textarea {
+  width: 100%;
+  min-width: 0;
+  display: block;
+  padding: 16px 17px;
+  border: 1px solid rgba(194, 175, 255, .22);
+  border-radius: 12px;
+  outline: none;
+  background: #100b1a;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  box-shadow: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.finnitus-form-field input {
+  min-height: 58px;
+}
+
+.finnitus-form-field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.finnitus-form-field input::placeholder,
+.finnitus-form-field textarea::placeholder {
+  color: #827092;
+}
+
+.finnitus-form-field input:focus,
+.finnitus-form-field textarea:focus {
+  border-color: #9461ff;
+  box-shadow: 0 0 0 3px rgba(120, 42, 255, .13);
+}
+
+#finnitus-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  gap: 24px;
+  padding: 16px 26px;
+  min-height: 60px;
+  border: 0;
+  border-radius: 14px;
+  background: linear-gradient(110deg, #7500ff, #6221e9);
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .2s, box-shadow .2s, opacity .2s;
+}
+
+#finnitus-contact-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(102, 1, 245, .28);
+}
+
+#finnitus-contact-btn:disabled {
+  cursor: wait;
+  opacity: .65;
+}
+
+#finnitus-contact-status {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+#finnitus-contact-status:empty {
+  display: none;
+}
+
+#finnitus-contact-status.contact-success {
+  color: #a3ff12;
+}
+
+#finnitus-contact-status.contact-error {
+  color: #ff8585;
+}
+
+.finnitus-contact-privacy {
+  margin: -2px 0 0;
+  color: #9a8aaa;
+  font-size: 11px;
+  line-height: 1.65;
+}
+
+@media (max-width: 760px) {
+  .contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .finnitus-contact-card {
+    padding: 28px 23px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .finnitus-contact-header {
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  #finnitus-contact-btn {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   FINN ENTRE TEXTO E FORMULÁRIO
+========================================= */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px minmax(0, 1fr);
+  gap: 42px;
+  align-items: center;
+}
+
+.contact-finn-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-finn-center img {
+  width: 100%;
+  max-width: 210px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 34px rgba(102, 1, 245, 0.22));
+  animation: finnBob 5s ease-in-out infinite;
+}
+
+/* tablet */
+@media (max-width: 1100px) {
+  .contact-grid {
+    grid-template-columns: 1fr 170px 1fr;
+    gap: 28px;
+  }
+
+  .contact-finn-center img {
+    max-width: 170px;
+  }
+}
+
+/* celular */
+@media (max-width: 760px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .contact-finn-center {
+    order: 2;
+  }
+
+  .finnitus-contact-card {
+    order: 3;
+  }
+
+  .contact-finn-center img {
+    max-width: 180px;
+  }
+}
+
+/* Remove o círculo decorativo atrás do Finn */
+.download-banner::after {
+  display: none !important;
 }
