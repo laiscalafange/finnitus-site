@@ -3767,3 +3767,42 @@ html {
     height: 422px;
   }
 }
+
+.hero {
+  padding-top: 128px;
+  padding-bottom: 76px;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 5.1vw, 76px);
+  line-height: 1.05;
+  letter-spacing: -0.055em;
+  margin: 0 0 20px;
+  max-width: 590px;
+  text-wrap: balance;
+}
+
+.hero h1 br {
+  display: none;
+}
+
+.hero h1 > span {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: inherit;
+}
+
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: clamp(44px, 8.7vw, 64px);
+    line-height: 1.07;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero h1 {
+    font-size: clamp(37px, 9.5vw, 48px);
+  }
+}
+
