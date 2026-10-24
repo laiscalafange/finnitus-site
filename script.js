@@ -6,7 +6,7 @@
 const FINNITUS = {
   playStoreUrl: '',      // Ex.: 'https://play.google.com/store/apps/details?id=...'
   videoUrl: '',          // Ex.: 'assets/video-finnitus.mp4' ou link do YouTube
-  contactEmail: '',      // E-mail oficial para receber mensagens (formulário abre aplicativo de e-mail)
+  contactEmail: 'finnitus.contato@gmail.com', // E-mail oficial para contato direto
   instagramUrl: '',      // Ex.: 'https://www.instagram.com/SEUPERFIL/'
   instagramLabel: '',    // Ex.: '@finnitus'
 };
@@ -101,7 +101,7 @@ $$('[data-download]').forEach((button) => button.addEventListener('click', () =>
 
 // Video: arquivos MP4 locais/remotos OU links oficiais do YouTube.
 const videoButton = $('[data-video-open]');
-videoButton.addEventListener('click', () => {
+videoButton?.addEventListener('click', () => {
   const url = FINNITUS.videoUrl.trim();
   if (!url) {
     showDialog('Nosso vídeo está em preparação.', 'O vídeo oficial de apresentação será inserido nesta seção assim que a equipe finalizar a edição.');
@@ -131,14 +131,13 @@ videoButton.addEventListener('click', () => {
 if (FINNITUS.playStoreUrl && /^https:\/\//i.test(FINNITUS.playStoreUrl)) {
   $('[data-download]').childNodes[0].textContent = 'Baixar na Google Play ';
 }
-if (FINNITUS.videoUrl) {
+if (FINNITUS.videoUrl && $('.video-bar > span:last-child')) {
   $('.video-bar > span:last-child').textContent = 'VÍDEO OFICIAL • ASSISTA AGORA';
 }
 const emailNode = $('#contact-email-display');
 const instaNode = $('#contact-instagram-display');
 const contactEmail = FINNITUS.contactEmail.trim();
 if (contactEmail) {
-  $('.form-note').textContent = 'O formulário abre o seu aplicativo de e-mail. Confira a mensagem e confirme o envio por lá; nada é armazenado neste site.';
   const a = document.createElement('a');
   a.href = `mailto:${contactEmail}`;
   a.textContent = contactEmail;
@@ -153,25 +152,7 @@ if (FINNITUS.instagramUrl && /^https:\/\//i.test(FINNITUS.instagramUrl)) {
   instaNode.replaceWith(a);
 }
 
-const form = $('#contact-form');
-const formFeedback = $('#form-feedback');
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  const name = $('#contact-name').value.trim();
-  const sender = $('#contact-reply').value.trim();
-  const message = $('#contact-message').value.trim();
-  if (!name || !sender || !message) return;
-  if (!contactEmail) {
-    formFeedback.textContent = 'Canal de envio ainda não configurado. A equipe adicionará o e-mail oficial antes de publicar.';
-    showDialog('Contato em preparação.', 'O formulário já está pronto, mas ainda falta cadastrar o endereço oficial da equipe. Nenhuma mensagem foi enviada ou armazenada.');
-    return;
-  }
-  const subject = encodeURIComponent('Contato pelo site Finnitus');
-  const body = encodeURIComponent(`Nome: ${name}\nE-mail: ${sender}\n\nMensagem:\n${message}`);
-  const mailto = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-  formFeedback.textContent = 'Abrindo seu aplicativo de e-mail. Confira a mensagem e confirme o envio por lá.';
-  window.location.href = mailto;
-});
+// O formulário de contato é enviado via AJAX ao FormSubmit (bloco no final deste arquivo).
 
 $('#current-year').textContent = String(new Date().getFullYear());
 
@@ -236,4 +217,62 @@ if (demoCards.length && demoSlides.length && demoScroller) {
     demoSlides.forEach((slide) => slideObserver.observe(slide));
   }
   setActiveDemo(0, { scrollSlide: false });
+}
+
+
+/* ===============================================================
+   FINNITUS | CONTATO REAL VIA FORMSUBMIT
+   - Envia para finnitus.contato@gmail.com
+   - Mantém o visitante no site (envio AJAX)
+   - Requer ativação do e-mail no FormSubmit
+   =============================================================== */
+const contactForm = document.getElementById('finnitus-contact-form');
+
+if (contactForm) {
+  const submitButton = document.getElementById('finnitus-contact-btn');
+  const statusMessage = document.getElementById('finnitus-contact-status');
+  const originalButtonContent = submitButton.innerHTML;
+
+  contactForm.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!contactForm.reportValidity() || submitButton.disabled) return;
+
+    submitButton.disabled = true;
+    submitButton.textContent = 'Enviando...';
+    statusMessage.textContent = '';
+    statusMessage.className = '';
+
+    try {
+      const data = Object.fromEntries(new FormData(contactForm).entries());
+      const response = await fetch(
+        'https://formsubmit.co/ajax/finnitus.contato@gmail.com',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(data)
+        }
+      );
+
+      const result = await response.json();
+      if (!response.ok || String(result.success).toLowerCase() !== 'true') {
+        throw new Error(result.message || 'O serviço não confirmou o envio.');
+      }
+
+      statusMessage.className = 'contact-success';
+      statusMessage.textContent =
+        'Mensagem enviada! Nossa equipe agradece seu contato.';
+      contactForm.reset();
+    } catch (error) {
+      console.error('Falha no envio do formulário Finnitus:', error);
+      statusMessage.className = 'contact-error';
+      statusMessage.textContent =
+        'Não foi possível enviar agora. Tente novamente ou escreva para finnitus.contato@gmail.com.';
+    } finally {
+      submitButton.disabled = false;
+      submitButton.innerHTML = originalButtonContent;
+    }
+  });
 }
