@@ -1,0 +1,18 @@
+# Arquivos locais e temporários
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+*.tmp
+
+# Caso a equipe adicione ferramentas de build futuramente
+node_modules/
+dist/
+build/
+.env
+.env.*
+!.env.example
+
+# Prévia autocontida gerada para compartilhamento
+preview-standalone.html
