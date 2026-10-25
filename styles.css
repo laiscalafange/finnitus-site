@@ -1026,154 +1026,81 @@ svg.i {
 }
 
 .about-art {
-  position: relative;
-  min-height: 350px;
-  border-radius: 32px;
-  border: 1px solid rgba(194, 175, 255, 0.18);
+  height: 350px;
+  border-radius: 28px;
+  border: 1px solid #7430a46b;
   overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 30%, rgba(102, 1, 245, 0.22), transparent 30%),
-    radial-gradient(circle at 82% 78%, rgba(130, 220, 0, 0.10), transparent 24%),
-    linear-gradient(135deg, #170c28 0%, #12091d 55%, #1a0f2d 100%);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.32);
+  position: relative;
+  background: linear-gradient(125deg,#270d41,#100b1d 70%);
+  box-shadow: 0 25px 75px #0005;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 30px 34px;
-  gap: 22px;
-  isolation: isolate;
 }
 
 .about-art::before {
-  content: "";
+  content: '';
   position: absolute;
-  width: 260px;
-  height: 260px;
-  left: -70px;
-  top: -55px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(102, 1, 245, 0.32), transparent 68%);
-  pointer-events: none;
-  z-index: 0;
+  top: -140px;
+  left: -110px;
+  background: #ffb909;
+  width: 400px;
+  height: 400px;
+  clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%);
+  transform: rotate(20deg);
+  opacity: .27;
 }
 
 .about-art::after {
-  content: "";
+  content: '';
   position: absolute;
-  width: 220px;
-  height: 220px;
-  right: -70px;
-  bottom: -90px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(130, 220, 0, 0.14), transparent 70%);
-  filter: blur(6px);
-  pointer-events: none;
-  z-index: 0;
+  inset: auto -40px -100px 10px;
+  height: 250px;
+  background: radial-gradient(ellipse,#4200908b,transparent 70%);
+  filter: blur(40px);
 }
 
 .about-art img {
-  position: relative;
+  width: 295px;
+  margin-left: -20px;
   z-index: 2;
-  width: 260px;
-  margin: 0;
-  flex-shrink: 0;
-  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.35));
+  filter: drop-shadow(0 20px 20px #0008);
   animation: finnBob 7s ease-in-out infinite;
 }
 
 .about-art-mark {
-  position: absolute;
-  right: 18px;
-  top: -38px;
-  z-index: 1;
   font-family: var(--serif);
-  font-size: 220px;
+  font-size: 290px;
+  color: #ffffff07;
+  position: absolute;
+  right: -20px;
+  top: -70px;
   line-height: 1;
-  color: rgba(255, 255, 255, 0.035);
-  pointer-events: none;
 }
 
 .about-art-mark span {
-  color: rgba(130, 220, 0, 0.08);
+  color: #ffb90914;
 }
 
 .about-quote {
-  position: relative;
-  z-index: 2;
-  margin: 0;
-  max-width: 280px;
   font-family: var(--serif);
-  font-size: 28px;
-  line-height: 1.4;
-  color: #f8f5ff;
+  font-size: 27px;
+  line-height: 1.43;
+  z-index: 2;
+  margin-left: -28px;
 }
 
 .about-quote span {
-  color: var(--green);
+  color: var(--yellow);
 }
 
 .about-art-caption {
   position: absolute;
-  left: 34px;
-  bottom: 22px;
-  z-index: 2;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: #d5cae6;
-}
-
-@media (max-width: 970px) {
-  .about-art {
-    min-height: 320px;
-    padding: 26px 24px;
-    gap: 16px;
-  }
-
-  .about-art img {
-    width: 220px;
-  }
-
-  .about-quote {
-    font-size: 22px;
-    max-width: 220px;
-  }
-
-  .about-art-mark {
-    font-size: 180px;
-    top: -20px;
-  }
-}
-
-@media (max-width: 760px) {
-  .about-art {
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    min-height: 340px;
-    padding: 28px 20px 46px;
-  }
-
-  .about-art img {
-    width: 220px;
-  }
-
-  .about-quote {
-    max-width: 100%;
-    font-size: 24px;
-  }
-
-  .about-art-caption {
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    width: 100%;
-  }
-
-  .about-art-mark {
-    right: 8px;
-    top: -8px;
-    font-size: 150px;
-  }
+  left: 26px;
+  bottom: 20px;
+  z-index: 3;
+  font-size: 9px;
+  letter-spacing: .18em;
+  color: #ded1eb;
 }
 
 /* features */
@@ -3841,9 +3768,18 @@ html {
   }
 }
 
+/* =========================================================
+   HERO — TIPOGRAFIA E ESPAÇAMENTO EQUILIBRADOS
+   Ajuste visual para desktop, tablet e celular.
+   Mantém a paleta, os mockups e o restante do layout.
+   ========================================================= */
 .hero {
   padding-top: 128px;
   padding-bottom: 76px;
+}
+
+.hero-copy {
+  padding-top: 0;
 }
 
 .hero h1 {
@@ -3855,6 +3791,7 @@ html {
   text-wrap: balance;
 }
 
+/* Evita que quebras manuais criem linhas em branco entre as frases. */
 .hero h1 br {
   display: none;
 }
@@ -3866,38 +3803,50 @@ html {
   line-height: inherit;
 }
 
+.hero-lead {
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+.hero-description {
+  margin-bottom: 24px;
+}
+
+.hero-meta {
+  margin-top: 26px;
+}
+
+@media (max-width: 970px) {
+  .hero h1 {
+    font-size: clamp(46px, 5.5vw, 64px);
+  }
+}
+
 @media (max-width: 760px) {
+  .hero {
+    padding-top: 106px;
+    padding-bottom: 46px;
+  }
+
   .hero h1 {
     font-size: clamp(44px, 8.7vw, 64px);
     line-height: 1.07;
+    max-width: 100%;
+    margin-bottom: 16px;
   }
 }
 
 @media (max-width: 520px) {
   .hero h1 {
     font-size: clamp(37px, 9.5vw, 48px);
+    line-height: 1.08;
   }
 }
 
-
-/* Vídeo Finnitus - YouTube */
-
-.video-stage {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  position: relative;
-  overflow: hidden;
-  border-radius: 22px;
-  background: #0b0712;
-  border: 1px solid rgba(194, 175, 255, 0.3);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
-}
-
-.video-stage iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  border: none;
+@media (max-width: 370px) {
+  .hero h1 {
+    font-size: 36px;
+  }
 }
 
 /* ==========================================================
@@ -4132,251 +4081,43 @@ html {
     right: 10px;
   }
 }
-
-
-
-.contact-method a {
-  font-size: 14px;
-  font-weight: 700;
-}
-
-/* ===============================================================
-   FINNITUS | FORMULÁRIO DE CONTATO — VISUAL RESTAURADO
-   Mantém a identidade roxo + verde presente no restante do site.
-   =============================================================== */
-.contact-grid {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(36px, 6vw, 95px);
-}
-
-.finnitus-contact-card {
-  width: 100%;
-  min-width: 0;
-  padding: 38px;
-  border: 1px solid rgba(194, 175, 255, .2);
-  border-radius: 26px;
-  background: linear-gradient(145deg, #1c102a, #150d20);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, .16);
-}
-
-.finnitus-contact-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 32px;
-}
-
-.finnitus-contact-header h3 {
-  color: #f8f5ff;
-  font-family: var(--serif);
-  font-size: clamp(25px, 2.2vw, 34px);
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.2;
-  margin: 0;
-}
-
-.finnitus-contact-header > span {
-  color: var(--green);
-  font-size: 11px;
-  white-space: nowrap;
-}
-
-#finnitus-contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  width: 100%;
-}
-
-.finnitus-form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 100%;
-  min-width: 0;
-}
-
-.finnitus-form-field label {
-  color: #f8f5ff;
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.finnitus-form-field input,
-.finnitus-form-field textarea {
-  width: 100%;
-  min-width: 0;
-  display: block;
-  padding: 16px 17px;
-  border: 1px solid rgba(194, 175, 255, .22);
-  border-radius: 12px;
-  outline: none;
-  background: #100b1a;
-  color: #fff;
-  font: inherit;
-  font-size: 13px;
-  box-shadow: none;
-  transition: border-color .2s, box-shadow .2s;
-}
-
-.finnitus-form-field input {
-  min-height: 58px;
-}
-
-.finnitus-form-field textarea {
-  min-height: 130px;
-  resize: vertical;
-}
-
-.finnitus-form-field input::placeholder,
-.finnitus-form-field textarea::placeholder {
-  color: #827092;
-}
-
-.finnitus-form-field input:focus,
-.finnitus-form-field textarea:focus {
-  border-color: #9461ff;
-  box-shadow: 0 0 0 3px rgba(120, 42, 255, .13);
-}
-
-#finnitus-contact-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  align-self: flex-start;
-  gap: 24px;
-  padding: 16px 26px;
-  min-height: 60px;
-  border: 0;
-  border-radius: 14px;
-  background: linear-gradient(110deg, #7500ff, #6221e9);
-  color: #fff;
-  font: inherit;
-  font-size: 13px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: transform .2s, box-shadow .2s, opacity .2s;
-}
-
-#finnitus-contact-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(102, 1, 245, .28);
-}
-
-#finnitus-contact-btn:disabled {
-  cursor: wait;
-  opacity: .65;
-}
-
-#finnitus-contact-status {
-  margin: 0;
-  font-size: 12px;
-  line-height: 1.6;
-}
-
-#finnitus-contact-status:empty {
-  display: none;
-}
-
-#finnitus-contact-status.contact-success {
-  color: #a3ff12;
-}
-
-#finnitus-contact-status.contact-error {
-  color: #ff8585;
-}
-
-.finnitus-contact-privacy {
-  margin: -2px 0 0;
-  color: #9a8aaa;
-  font-size: 11px;
-  line-height: 1.65;
-}
+/* ==========================================================
+   FINNITUS — HERO MOBILE
+   Mascote abaixo dos celulares, sem cobrir as telas.
+   Adicione este bloco ao FINAL do CSS existente.
+   ========================================================== */
 
 @media (max-width: 760px) {
-  .contact-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 40px;
+  /* Abre espaço para o mascote aparecer por inteiro. */
+  .hero {
+    padding-bottom: 120px;
   }
 
-  .finnitus-contact-card {
-    padding: 28px 23px;
-    border-radius: 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .finnitus-contact-header {
-    flex-wrap: wrap;
-    gap: 7px;
+  /* Afasta o Finn dos mockups: não cobre a tela de metas. */
+  .hero-finn {
+    top: 535px;
+    right: 8px;
+    bottom: auto;
+    width: 175px;
+    z-index: 4;
+    animation: none;
   }
 
-  #finnitus-contact-btn {
-    width: 100%;
-  }
-}
-
-/* =========================================
-   FINN ENTRE TEXTO E FORMULÁRIO
-========================================= */
-
-.contact-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px minmax(0, 1fr);
-  gap: 42px;
-  align-items: center;
-}
-
-.contact-finn-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.contact-finn-center img {
-  width: 100%;
-  max-width: 210px;
-  height: auto;
-  object-fit: contain;
-  filter: drop-shadow(0 16px 34px rgba(102, 1, 245, 0.22));
-  animation: finnBob 5s ease-in-out infinite;
-}
-
-/* tablet */
-@media (max-width: 1100px) {
-  .contact-grid {
-    grid-template-columns: 1fr 170px 1fr;
-    gap: 28px;
-  }
-
-  .contact-finn-center img {
-    max-width: 170px;
+  /* Retira elementos decorativos que atravessam as telas. */
+  .floating-note,
+  .mockup-label {
+    display: none;
   }
 }
 
-/* celular */
-@media (max-width: 760px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+@media (max-width: 520px) {
+  .hero {
+    padding-bottom: 78px;
   }
 
-  .contact-finn-center {
-    order: 2;
+  .hero-finn {
+    top: 540px;
+    right: 15px;
+    width: 155px;
   }
-
-  .finnitus-contact-card {
-    order: 3;
-  }
-
-  .contact-finn-center img {
-    max-width: 180px;
-  }
-}
-
-/* Remove o círculo decorativo atrás do Finn */
-.download-banner::after {
-  display: none !important;
 }
