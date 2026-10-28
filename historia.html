@@ -49,7 +49,7 @@
         <div class="story-hero-copy" data-reveal>
           <span class="section-label">FINNITUS / NOSSO PROCESSO CRIATIVO</span>
           <span class="story-small-rule" aria-hidden="true"></span>
-          <h1 id="story-hero-heading">Antes dos pixels,<br><em>vieram os rabiscos.</em></h1>
+          <h1 id="story-hero-heading">De uma ideia no papel<br><em>a um projeto real.</em></h1>
           <p class="story-hero-lead">Toda grande ideia começa com um primeiro traço.</p>
           <p>Antes de ganhar forma como aplicativo, o Finnitus passou por páginas de caderno, testes de símbolos, diferentes desenhos e muitas tentativas. Aqui estão os registros reais dessa construção.</p>
           <div class="story-hero-actions"><a class="btn btn-gold" href="#identidade">Explore a trajetória <svg class="i" aria-hidden="true"><use href="#icon-arrow"/></svg></a><a class="story-text-link" href="index.html#inicio">Voltar para o site ↗</a></div>
@@ -122,7 +122,7 @@
           <p>Depois dos esboços, o Finn começou a ganhar contornos digitais e uma paleta de cores. Este registro mostra uma das etapas de construção do personagem no Ibis Paint.</p>
           <p>Os primeiros desenhos e a arte digital revelam como uma ideia vai mudando até se aproximar da identidade que vemos hoje no projeto.</p>
           <a href="index.html#funcionalidades" class="history-preview-link">Conheça o aplicativo atual <svg class="i" aria-hidden="true"><use href="#icon-arrow-up-right"/></svg></a>
-          <div class="story-current-finn" aria-label="Versão atual do mascote no site"><img src="assets/finn-voando.png" alt="Finn, mascote atual do Finnitus, em uma pose de voo" loading="lazy"/><span>O FINN HOJE<br><small>NO SITE OFICIAL</small></span></div>
+          <div class="story-current-finn" aria-label="Versão atual do mascote no site"><img src="assets/finn-icone.png" alt="Finn, mascote atual do Finnitus, em uma pose de voo" loading="lazy"/><span>O FINN HOJE<br><small>NO SITE OFICIAL</small></span></div>
         </div>
       </div>
     </section>
@@ -160,5 +160,62 @@
     <figure><img src="" alt="" id="story-lightbox-image"/><figcaption><span id="story-lightbox-caption"></span><small id="story-lightbox-count"></small></figcaption></figure>
     <button class="story-lightbox-nav story-lightbox-next" type="button" data-lightbox-next aria-label="Próxima imagem">›</button>
   </dialog>
+  <!-- Destaca automaticamente o item da seção visível, como no index.html. -->
+  <script>
+    (() => {
+      const ids = ['identidade', 'finn', 'digital', 'galeria'];
+      const sections = ids.map(id => document.getElementById(id)).filter(Boolean);
+      const navLinks = [...document.querySelectorAll('.desktop-nav a, .mobile-nav a')]
+        .filter(link => ids.some(id => link.getAttribute('href') === `#${id}`));
+      const header = document.querySelector('.site-header');
+      let scheduled = false;
+
+      function updateActiveSection() {
+        scheduled = false;
+        if (!sections.length) return;
+
+        // A seção passa a ser ativa ao chegar à área de leitura da página.
+        const headerHeight = header ? header.getBoundingClientRect().height : 0;
+        const readingLine = headerHeight + Math.min(window.innerHeight * 0.22, 160);
+        let activeId = sections[0].id;
+
+        for (const section of sections) {
+          if (section.getBoundingClientRect().top <= readingLine) {
+            activeId = section.id;
+          } else {
+            break;
+          }
+        }
+
+        navLinks.forEach(link => {
+          const active = link.getAttribute('href') === `#${activeId}`;
+          link.classList.toggle('is-current', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      }
+
+      function requestUpdate() {
+        if (!scheduled) {
+          scheduled = true;
+          window.requestAnimationFrame(updateActiveSection);
+        }
+      }
+
+      window.addEventListener('scroll', requestUpdate, { passive: true });
+      window.addEventListener('resize', requestUpdate);
+      window.addEventListener('hashchange', requestUpdate);
+      navLinks.forEach(link => link.addEventListener('click', () => {
+        navLinks.forEach(other => {
+          const active = other.getAttribute('href') === link.getAttribute('href');
+          other.classList.toggle('is-current', active);
+          if (active) other.setAttribute('aria-current', 'location');
+          else other.removeAttribute('aria-current');
+        });
+      }));
+      requestUpdate();
+      window.addEventListener('load', requestUpdate);
+    })();
+  </script>
 </body>
 </html>
