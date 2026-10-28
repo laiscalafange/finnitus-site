@@ -4951,3 +4951,10 @@ html {
   .desktop-nav { gap: clamp(8px,1.1vw,19px); }
   .desktop-nav a { white-space: nowrap; }
 }
+
+
+/* Destaques nos títulos da prévia — paleta existente Finnitus */
+.app-lab .demo-copy h3 .demo-purple { color: var(--purple-light); }
+.app-lab .demo-copy h3 .demo-green { color: var(--green); }
+.app-lab .demo-copy h3 .demo-lilac { color: var(--lilac); }
+.app-lab .demo-copy h3 .demo-orange { color: var(--orange); }
