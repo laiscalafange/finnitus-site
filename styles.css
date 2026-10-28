@@ -4029,11 +4029,13 @@ html {
   position: absolute;
   z-index: 2;
   width: clamp(220px, 23vw, 310px);
-  max-height: 100%;
+  max-height: calc(100% - 44px);
   right: clamp(16px, 6.5vw, 105px);
-  bottom: -17px;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
   object-fit: contain;
-  object-position: center bottom;
+  object-position: center;
   filter: drop-shadow(0 16px 30px rgba(10, 3, 24, 0.35));
 }
 
@@ -4094,7 +4096,9 @@ html {
     width: 225px;
     max-height: 225px;
     right: 18px;
-    bottom: -10px;
+    top: auto;
+    bottom: 6px;
+    transform: none;
   }
 
   .download-banner::before {
@@ -4958,3 +4962,100 @@ html {
 .app-lab .demo-copy h3 .demo-green { color: var(--green); }
 .app-lab .demo-copy h3 .demo-lilac { color: var(--lilac); }
 .app-lab .demo-copy h3 .demo-orange { color: var(--orange); }
+
+/* ============================================================
+   FINNITUS | Banner Google Play — mascote alinhado no centro
+   Regra final: substitui posicionamentos antigos do Finn.
+   ============================================================ */
+.download-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 370px;
+  overflow: hidden;
+}
+
+.download-banner .download-copy {
+  position: relative;
+  z-index: 3;
+  flex: 0 1 68%;
+  width: 68%;
+  max-width: none;
+  padding: 54px clamp(28px, 5vw, 76px);
+}
+
+.download-banner .download-finn {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  right: clamp(22px, 6%, 90px);
+  bottom: auto;
+  left: auto;
+  width: clamp(190px, 22vw, 280px);
+  height: auto;
+  max-height: 300px;
+  margin: 0;
+  /* Centralização independente da animação de flutuação. */
+  translate: 0 -50%;
+  transform: none;
+  animation: finnBob 6s ease-in-out infinite;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (min-width: 761px) and (max-width: 970px) {
+  .download-banner .download-copy {
+    flex-basis: 68%;
+    width: 68%;
+    padding: 40px 32px;
+  }
+  .download-banner .download-finn {
+    right: 15px;
+    width: clamp(160px, 26vw, 235px);
+  }
+}
+
+@media (max-width: 760px) {
+  .download-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-height: 0;
+  }
+  .download-banner .download-copy {
+    flex: none;
+    width: 100%;
+    padding: 36px 28px 16px;
+  }
+  .download-banner .download-finn {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: min(52vw, 225px);
+    max-height: 230px;
+    margin: 0 auto 22px;
+    translate: none;
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .download-banner .download-copy {
+    padding: 32px 23px 14px;
+  }
+  .download-banner .download-finn {
+    width: min(55vw, 195px);
+    max-height: 200px;
+    margin-bottom: 18px;
+  }
+}
+
+/* Banner: remove o círculo contornado atrás do Finn.
+   Mantém somente o brilho roxo discreto no fundo. */
+.download-banner::after {
+  content: none;
+  display: none;
+}
