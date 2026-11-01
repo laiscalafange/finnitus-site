@@ -5059,3 +5059,83 @@ html {
   content: none;
   display: none;
 }
+
+
+/* =======================================================
+   FINNITUS | Capa do vídeo em Full HD (1920 x 1080, 16:9)
+   O player conserva as mesmas dimensões no celular.
+   ======================================================= */
+.video-stage .finnitus-video-cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  display: block;
+  overflow: hidden;
+  border: 0;
+  border-radius: inherit;
+  background: #0c0916;
+  cursor: pointer;
+}
+
+.finnitus-video-cover img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.finnitus-video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: clamp(48px, 6vw, 70px);
+  height: clamp(48px, 6vw, 70px);
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #fff;
+  background: rgba(66, 0, 144, 0.92);
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+  transform: translate(-50%, -50%);
+  transition: background .2s ease, box-shadow .2s ease, scale .2s ease;
+  pointer-events: none;
+}
+
+.finnitus-video-play .i {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+  stroke-width: 1.2;
+  margin-left: 3px;
+}
+
+.finnitus-video-cover:hover .finnitus-video-play {
+  background: #6601f5;
+  box-shadow: 0 12px 35px rgba(102,1,245,.35);
+  scale: 1.06;
+}
+
+.finnitus-video-cover:focus-visible {
+  outline: 3px solid #c2afff;
+  outline-offset: -4px;
+}
+
+@media (max-width: 520px) {
+  .finnitus-video-play {
+    width: 50px;
+    height: 50px;
+  }
+  .finnitus-video-play .i {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .finnitus-video-play { transition: none; }
+}
