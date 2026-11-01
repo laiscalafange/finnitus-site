@@ -242,16 +242,26 @@
 
     
 
-<!-- Player do YouTube -->
+<!-- Capa personalizada do vídeo (16:9). O YouTube só carrega ao clicar. -->
 <div class="video-stage" data-reveal>
-  <iframe
-    src="https://www.youtube.com/embed/zCidQmphT-o"
-    title="Conheça o Finnitus"
-    loading="lazy"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    referrerpolicy="strict-origin-when-cross-origin"
-    allowfullscreen>
-  </iframe>
+  <button
+    class="finnitus-video-cover"
+    type="button"
+    data-video-play
+    aria-label="Reproduzir vídeo de apresentação do Finnitus"
+  >
+    <img
+      src="assets/capa-video-finnitus.webp"
+      alt="Capa do vídeo do TCC Finnitus 2026, com o mascote Finn"
+      width="1920"
+      height="1080"
+      loading="lazy"
+      decoding="async"
+    />
+    <span class="finnitus-video-play" aria-hidden="true">
+      <svg class="i"><use href="#icon-play"/></svg>
+    </span>
+  </button>
 </div>
 
 
@@ -345,7 +355,7 @@
 
     <a
       class="team-linkedin"
-      href="https://www.linkedin.com/in/la%C3%ADs-barbosa-60883a3b9/"
+      href="https://www.linkedin.com/in/la%C3%ADs-calafange-barbosa-60883a3b9/"
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Acessar LinkedIn de Laís"
@@ -693,5 +703,27 @@
 
   <dialog class="site-dialog" id="status-dialog" aria-labelledby="dialog-title"><button type="button" class="dialog-close" data-dialog-close aria-label="Fechar"><svg class="i"><use href="#icon-close"/></svg></button><img src="assets/finn-icone.png" alt="" width="84" height="64" /><span class="section-label">EM PREPARAÇÃO</span><h2 id="dialog-title">Novidades em breve.</h2><p id="dialog-text">Estamos preparando essa parte do projeto.</p><button type="button" class="btn btn-gold" data-dialog-close>Entendi <svg class="i"><use href="#icon-check"/></svg></button></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+  // Ativa o player do YouTube somente após o clique na capa personalizada.
+  (() => {
+    const cover = document.querySelector('[data-video-play]');
+    if (!cover) return;
+
+    cover.addEventListener('click', () => {
+      const stage = cover.closest('.video-stage');
+      if (!stage) return;
+
+      const player = document.createElement('iframe');
+      player.src = 'https://www.youtube.com/embed/zCidQmphT-o?autoplay=1&rel=0';
+      player.title = 'Conheça o Finnitus — vídeo de apresentação';
+      player.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      player.referrerPolicy = 'strict-origin-when-cross-origin';
+      player.allowFullscreen = true;
+      player.setAttribute('loading', 'eager');
+      stage.replaceChildren(player);
+    }, { once: true });
+  })();
+</script>
 </body>
 </html>
