@@ -221,58 +221,8 @@ if (demoCards.length && demoSlides.length && demoScroller) {
 
 
 /* ===============================================================
-   FINNITUS | CONTATO REAL VIA FORMSUBMIT
-   - Envia para finnitus.contato@gmail.com
-   - Mantém o visitante no site (envio AJAX)
-   - Requer ativação do e-mail no FormSubmit
+   FINNITUS | FORMULÁRIO DE CONTATO
+   O formulário HTML faz POST diretamente para formsubmit.co.
+   Não interceptar o evento submit com preventDefault/fetch.
+   O FormSubmit requer confirmação do e-mail destinatário.
    =============================================================== */
-const contactForm = document.getElementById('finnitus-contact-form');
-
-if (contactForm) {
-  const submitButton = document.getElementById('finnitus-contact-btn');
-  const statusMessage = document.getElementById('finnitus-contact-status');
-  const originalButtonContent = submitButton.innerHTML;
-
-  contactForm.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    if (!contactForm.reportValidity() || submitButton.disabled) return;
-
-    submitButton.disabled = true;
-    submitButton.textContent = 'Enviando...';
-    statusMessage.textContent = '';
-    statusMessage.className = '';
-
-    try {
-      const data = Object.fromEntries(new FormData(contactForm).entries());
-      const response = await fetch(
-        'https://formsubmit.co/ajax/finnitus.contato@gmail.com',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify(data)
-        }
-      );
-
-      const result = await response.json();
-      if (!response.ok || String(result.success).toLowerCase() !== 'true') {
-        throw new Error(result.message || 'O serviço não confirmou o envio.');
-      }
-
-      statusMessage.className = 'contact-success';
-      statusMessage.textContent =
-        'Mensagem enviada! Nossa equipe agradece seu contato.';
-      contactForm.reset();
-    } catch (error) {
-      console.error('Falha no envio do formulário Finnitus:', error);
-      statusMessage.className = 'contact-error';
-      statusMessage.textContent =
-        'Não foi possível enviar agora. Tente novamente ou escreva para finnitus.contato@gmail.com.';
-    } finally {
-      submitButton.disabled = false;
-      submitButton.innerHTML = originalButtonContent;
-    }
-  });
-}

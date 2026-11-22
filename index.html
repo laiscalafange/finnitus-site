@@ -154,7 +154,7 @@
             <h2 class="section-title" id="app-lab-heading">Explore uma <span>prévia do aplicativo.</span></h2>
             <p>Clique em uma funcionalidade abaixo para rolar até esta área e visualizar um exemplo da experiência do Finnitus.</p>
           </div>
-          <div class="section-aside">SCROLLVIEW DE TESTE<br>INTERAÇÃO VISUAL</div>
+          <div class="section-aside">INTERAÇÃO VISUAL</div>
         </div>
         <div class="app-lab-shell" data-reveal>
           <div class="app-lab-head">
@@ -637,6 +637,20 @@
         />
 
         <input type="hidden" name="_template" value="table" />
+
+        <!-- Retorno ao site após o envio confirmado pelo FormSubmit -->
+        <input
+          type="hidden"
+          name="_next"
+          value="https://finnitus-site.onrender.com/obrigado.html"
+        />
+
+        <!-- Indica a origem do formulário ao serviço de envio -->
+        <input
+          type="hidden"
+          name="_url"
+          value="https://finnitus-site.onrender.com/"
+        />
 
         <input
           type="text"
